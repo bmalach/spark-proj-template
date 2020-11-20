@@ -18,7 +18,8 @@ public class SparkDemo {
 		JavaRDD<String> textFile = sc.textFile("shakespeare.txt"); // ścieżka względna
 
 		JavaRDD<String> words = textFile.flatMap(s -> Arrays.asList(s.split("[ ,]")).iterator());
-		JavaPairRDD<String, Integer> counts = words.mapToPair(word -> new Tuple2<>(word, 1)).reduceByKey((a, b) -> a + b);
+		JavaPairRDD<String, Integer> pairs = words.mapToPair(word -> new Tuple2<>(word, 1));
+		JavaPairRDD<String, Integer> counts = pairs.reduceByKey((a, b) -> a + b);
 
 //		zwięzły zapis łączący obie operacje
 //		JavaPairRDD<String, Integer> counts = textFile.flatMap(s -> Arrays.asList(s.split("[ ,]")).iterator())
@@ -26,6 +27,7 @@ public class SparkDemo {
 
 		counts.foreach(p -> System.out.println(p));
 		System.out.println("Total words: " + counts.count());
+		System.out.println("words: " + words.count());
 		sc.stop();
 		sc.close();
 	}

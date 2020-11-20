@@ -6,7 +6,7 @@ Build project:
 mvn package
 ```
 
-Run project in HDP environment:
+Run project with Spark:
 ```
 spark-submit --class "sparkdemo.SparkDemo" --master local ./sparkexample-0.0.1-SNAPSHOT.jar
 ```

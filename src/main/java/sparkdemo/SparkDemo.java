@@ -27,7 +27,6 @@ public class SparkDemo {
 
 		counts.foreach(p -> System.out.println(p));
 		System.out.println("Total words: " + counts.count());
-		System.out.println("words: " + words.count());
 		sc.stop();
 		sc.close();
 	}

@@ -14,7 +14,8 @@ public class SparkDemo {
 	public static void main(String[] args) {
 		SparkConf conf = new SparkConf().setMaster("local").setAppName("Word Count");
 		JavaSparkContext sc = new JavaSparkContext(conf);
-//		JavaRDD<String> textFile = sc.textFile("file:///home/user/shakespeare.txt"); // ścieżka bezwzględna
+//		JavaRDD<String> textFile = sc.textFile("file:///home/user/shakespeare.txt"); // ścieżka bezwzględna hadoop
+//		JavaRDD<String> textFile = sc.textFile("C:\\Users\\user\\git\\spark-proj-template\\shakespeare.txt"); // ścieżka bezwzględna lokalna
 		JavaRDD<String> textFile = sc.textFile("shakespeare.txt"); // ścieżka względna
 
 		JavaRDD<String> words = textFile.flatMap(s -> Arrays.asList(s.split("[ ,]")).iterator());
